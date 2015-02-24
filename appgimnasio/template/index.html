@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block title %} <title>{{gimnasio}}</title>{% endblock%}
+{%block contenido%}
+	<section id="content" class="container">
+			<div class="hero-unit">
+				<h2><strong>{{gimnasio}}</strong></h2>
+			</div>
+		</section><!-- end .container -->
+
+		<div class="lead-container">
+			<div class="container">
+
+				<!-- Macbook carousel -->
+				<div id="carousel" class="carousel slide stacked" rel="carousel">
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<!-- Item -->
+						<div class="item active"> 
+							<img alt="" src="{% static "img/gym1.jpg" %}" width="1200" height="420"/>
+						</div>
+						<!-- end Item -->
+						<!-- Item -->
+						<div class="item">
+							<img alt="" src="{% static "img/gym2.jpeg" %}" width="1200" height="420"/>
+						</div>
+						<!-- end Item -->
+						<!-- Item -->
+						<div class="item">
+							<img alt="" src="{% static "img/gym3.jpg" %}" width="1200" height="420"/>
+						</div>
+						<!-- end Item -->
+					</div>
+					<!-- Carousel navigation -->
+					<a class="carousel-control left" href="#carousel" data-slide="prev"></a>
+					<a class="carousel-control right" href="#carousel" data-slide="next"></a>
+				</div>
+				<!-- end Macbook carousel -->
+			
+				<div class="row">
+					<div class="span1"> <span class="circle" style="background:#ED3E3E;"><i class="icon-heart-empty"></i></span> </div>
+					<div class="span3">
+						<br /> 
+						<h3>Servicios</h3> 
+						{% if servicios %}
+								{% for s in servicios %}
+									<li>{{s}}</li>
+								{% endfor %}
+						{% else %}
+							<h4><strong>No hay Servicios</strong></h4>
+						{% endif %}
+					</div>
+					<div class="span1">	<span class="circle" style="background:#80AD00;"><i class="icon-leaf"></i></span> </div>
+					<div class="span3">
+						<br />
+						<h3>Sede </h3>
+						<h4><strong>{{gimnasio.direccion}}</strong></h4>
+					</div>
+					<div class="span1">	<span class="circle" style="background:#5DB9F2;"><i class="icon-bolt"></i></span> </div>
+					<div class="span3">
+						<br />
+						<h3>Contacto</h3>
+						<h4><strong>Telefono: {{gimnasio.telefono}}</strong></h4>
+						<h4><strong>Correo: {{gimnasio.correo}}</strong></h4>
+					</div>
+				</div>
+
+				<section class="row">
+					<article class="span4"> <p></p>	</article>
+					<article class="span4">	<p></p>	</article>
+					<article class="span4">	<p></p>	</article>
+				</section>
+				<!-- end .row -->
+			</div>
+		</div>
+	</section>
+{%endblock%}

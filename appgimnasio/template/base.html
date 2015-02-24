@@ -1,0 +1,105 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html class="not-ie" lang="en"> 
+<head>
+
+	<meta charset="utf-8">
+	<link type="image/x-icon" href="{% static "img/iconoGym.png"%}" rel="icon" />
+	{% block title %}{% endblock %}
+	
+	<meta name="description" content="Manejo de Gimnasio">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Styles -->
+	<link href="{% static "css/style.css" %}" rel="stylesheet" type="text/css" />
+	<link href="{% static "css/font-awesome.css"%}" rel="stylesheet" type="text/css" />
+	<!-- Styles -->
+
+	<!-- Web Fonts  -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	<!-- Web Fonts  -->
+
+	<!-- Javascript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="{% static "js/jquery-1.7.2.min.js" %}"><\/script>')</script>
+	<!-- Javascript -->
+
+</head>
+<body>
+
+	<!-- Header
+	================================================== -->
+	<header id="header">
+		<!-- Navigation
+		================================================== -->
+		<nav class="navbar">
+			<div class="navbar-inner">
+				<div class="container">
+					<!-- Logo -->
+					<a class="brand" href="{% url 'index' %}">{{gimnasio}}</a>
+					<ul class="nav">
+						<li><a href="{% url 'index' %}" title="página principal">Principal</a></li>
+						<li><a href="{% url 'ingreso' %}" title="página de ingreso de clientes">Ingreso Clientes</a></li>						
+						{% if user.is_authenticated %}
+							<li class="dropdown"><a href="#" data-toggle="dropdown" >{{user}} <span class="caret"></span></a>
+	          					<ul class="dropdown-menu" role="menu">
+						            <li><a href="">Sitio de Administrador</a></li>
+						            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+	          					</ul>
+        					</li>
+						{% else %}
+							<li><a href="{% url 'login' %}" title="página de administracion">Sitio de Administración</a></li>
+						{% endif %}
+				</div>
+			</div>
+		</nav>
+		<!-- Navigation
+		================================================== -->
+	</header>
+	<!-- Header
+	================================================== -->
+
+	<!-- Content
+	================================================== -->
+	{% block contenido%}{% endblock %}
+	<!-- Content
+	================================================== -->
+
+	<!-- Footer
+	================================================== -->
+	<footer id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span4">
+					<a class="brand" href="{% url 'index' %}"> {{gimnasio}} </a>
+					<p> {{gimnasio.telefono}} </p>
+				</div>
+				<div class="span1">	<span class="circle" style="background:#fff;"><i class="icon-leaf"></i></span> </div>
+				<div class="span1">	<span class="circle" style="background:#fff;"><i class="icon-leaf"></i></span> </div>
+				<div class="span1">	<span class="circle" style="background:#fff;"><i class="icon-leaf"></i></span> </div>
+				<div class="span1">	<span class="circle" style="background:#fff;"><i class="icon-leaf"></i></span> </div>
+				<div class="span4 social-networks">
+					<h3>Encuentranos en:</h3>
+					<p>
+						<a class="social-network facebook" href="{{gimnasio.urlfacebook}}"></a>
+						<a class="social-network twitter" href="{{gimnasio.urltwitter}}"></a>
+					</p>
+				</div>
+			</div> 	
+		</div>
+	</footer>
+	<!-- Footer
+	================================================== -->
+
+	<!-- Javascript - Placed at the end of the document so the pages load faster 
+	================================================== -->
+	<script type="text/javascript" src="{% static "js/bootstrap.min.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/jquery.isotope.min.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/jquery.touchSwipe.js"%}"></script>
+	<script type="text/javascript" src="{% static "js/jquery.hotkeys.min.js"%}" charset='utf-8'></script>
+	<script type="text/javascript" src="{% static "js/functions.js"%}"></script>
+	<!-- Javascript - Placed at the end of the document so the pages load faster 
+	================================================== -->
+
+</body>
+</html>	

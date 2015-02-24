@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%load static from staticfiles%}
+{%block title%}<title>Ingreso de Usuarios</title>{%endblock%}
+{%block contenido%}
+	<section id="content" class="container">
+		<div class="hero-unit">
+			<h2><strong>Ingreso de Usuarios</strong></h2>
+		</div>
+		<div class="lead-container">
+			<div class="container">
+				<form action="" method="post">
+				    {% csrf_token %}
+				    {{ form.as_p }}
+				    <input type="submit" value="Ingresar" />
+				</form>
+			</div>
+			<p><strong>{{estado}}</strong></p>
+			</div>
+		</div>
+	</section>
+{%endblock%}
