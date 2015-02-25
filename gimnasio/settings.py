@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 import dj_database_url
-DATABASES = {'default': dj_database_url.parse('postgres://tzeshtxxdpzutu:jKVCs-ThflYa-rp3RQ0SmQDWeA@ec2-23-21-219-209.compute-1.amazonaws.com:5432/d15vsobtofal8d')}
+DATABASES = {'default': dj_database_url.parse('postgres://tjhwlabsrlaave:dVE95vWyZhr7gPnKl8i1jRPATH@ec2-107-21-226-77.compute-1.amazonaws.com:5432/d8a6ft41do7vpr')}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
+    'bootstrap3',
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,10 +66,10 @@ WSGI_APPLICATION = 'gimnasio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd15vsobtofal8d',
-        'USER': 'tzeshtxxdpzutu',
-        'PASSWORD' : 'jKVCs-ThflYa-rp3RQ0SmQDWeA',
-        'HOST' : 'ec2-23-21-219-209.compute-1.amazonaws.com',
+        'NAME': 'd8a6ft41do7vpr',
+        'USER': 'tjhwlabsrlaave',
+        'PASSWORD' : 'dVE95vWyZhr7gPnKl8i1jRPATH',
+        'HOST' : 'ec2-107-21-226-77.compute-1.amazonaws.com',
         'PORT' : '5432',
     }
 }
@@ -97,3 +99,13 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR, 'appgimnasio/template'),)
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 TEMPLATE_CONTEXT_PROCESSORS =  TCP+('appgimnasio.context_processors.info_gym',)
+
+DAB_FIELD_RENDERER = 'django_admin_bootstrapped.renderers.BootstrapFieldRenderer'
+
+from django.contrib import messages
+
+MESSAGE_TAGS = {
+            messages.SUCCESS: 'alert-success success',
+            messages.WARNING: 'alert-warning warning',
+            messages.ERROR: 'alert-danger error'
+}

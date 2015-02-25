@@ -4,8 +4,12 @@ from appgimnasio.models import Cliente,Empleado,ConceptoIngreso,ConceptoGasto,Ga
 
 class HistorialAdmin(admin.ModelAdmin):
 	list_display = ('idCliente', 'fecha')
-	
-admin.site.register(Cliente)
+
+class ClienteAdmin(admin.ModelAdmin):
+	list_display = ('identificacion','nombre','segundoNombre','apellido','segundoApellido','fechaNacimiento','telefono',) 
+	search_fields = ('identificacion', 'nombre',)
+
+admin.site.register(Cliente,ClienteAdmin)
 admin.site.register(Empleado)
 admin.site.register(ConceptoIngreso)
 admin.site.register(ConceptoGasto)

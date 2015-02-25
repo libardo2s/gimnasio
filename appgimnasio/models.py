@@ -45,7 +45,6 @@ class ConceptoGasto(models.Model):
 		return self.nombre
 
 class Gasto(models.Model):
-	codigo = models.CharField('Codigo', max_length='5',primary_key=True)
 	concepto = models.ForeignKey('ConceptoGasto')
 	fecha = models.DateField('Fecha', auto_now=True)
 	monto = models.IntegerField(max_length='6')
@@ -54,7 +53,6 @@ class Gasto(models.Model):
 		return "%s %s"% (self.fecha,self.concepto.nombre)
 
 class Ingreso(models.Model):
-	codigo = models.CharField('Codigo', max_length='5',primary_key=True)
 	concepto = models.ForeignKey('ConceptoIngreso')
 	fecha = models.DateField('Fecha', auto_now=True)
 	monto = models.IntegerField(max_length='6')
@@ -63,7 +61,6 @@ class Ingreso(models.Model):
 		return "%s %s"% (self.fecha,self.concepto.nombre)
 
 class Servicio(models.Model):
-	codigo = models.CharField('Codigo', max_length='5', primary_key=True)
 	servicio = models.CharField("Servicio", max_length=50)
 	tarifa = models.IntegerField(max_length='6')
 

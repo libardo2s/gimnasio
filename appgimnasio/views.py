@@ -8,7 +8,8 @@ from django.views.generic.edit import FormView
 from appgimnasio.models import Servicio, Gimnasio, Cliente, HistorialIngresoCliente
 from appgimnasio.forms import IngresoUsuario, LoginUsuario
 #from appgimnasio.serializers import GimnasioSerializers
-import datetime
+#import datetime
+from django.utils import timezone
 
 # Create your views here.
 class Index(ListView):
@@ -24,7 +25,7 @@ class IngresoCliente(FormView):
 	def form_valid(self, form):
 		try:
 			cliente = Cliente.objects.get(identificacion = form.cleaned_data['identificacion'])
-			historial = HistorialIngresoCliente(idCliente = cliente, fecha = datetime.datetime.now())
+			historial = HistorialIngresoCliente(idCliente = cliente, fecha = timezone.now())
 			historial.save()
 			return super(IngresoCliente, self).form_valid(form)
 		except Cliente.DoesNotExist:

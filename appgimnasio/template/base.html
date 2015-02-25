@@ -43,7 +43,7 @@
 						{% if user.is_authenticated %}
 							<li class="dropdown"><a href="#" data-toggle="dropdown" >{{user}} <span class="caret"></span></a>
 	          					<ul class="dropdown-menu" role="menu">
-						            <li><a href="">Sitio de Administrador</a></li>
+						            <li><a href="{% url 'admin:index' %}">Sitio de Administrador</a></li>
 						            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
 	          					</ul>
         					</li>
