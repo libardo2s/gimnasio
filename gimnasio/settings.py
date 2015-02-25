@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 import dj_database_url
-DATABASES = {'default': dj_database_url.parse('postgres://tjhwlabsrlaave:dVE95vWyZhr7gPnKl8i1jRPATH@ec2-107-21-226-77.compute-1.amazonaws.com:5432/d8a6ft41do7vpr')}
+DATABASES = {'default': dj_database_url.parse('postgres://uaasbzfiwnnpue:tX08aZgGXICcxVu_ST19SKazMK@ec2-107-22-249-214.compute-1.amazonaws.com:5432/d8jiori2jfjif1')}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -66,10 +66,10 @@ WSGI_APPLICATION = 'gimnasio.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd8a6ft41do7vpr',
-        'USER': 'tjhwlabsrlaave',
-        'PASSWORD' : 'dVE95vWyZhr7gPnKl8i1jRPATH',
-        'HOST' : 'ec2-107-21-226-77.compute-1.amazonaws.com',
+        'NAME': 'd8jiori2jfjif1',
+        'USER': 'uaasbzfiwnnpue',
+        'PASSWORD' : 'tX08aZgGXICcxVu_ST19SKazMK',
+        'HOST' : 'ec2-107-22-249-214.compute-1.amazonaws.com',
         'PORT' : '5432',
     }
 }
