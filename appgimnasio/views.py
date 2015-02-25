@@ -5,7 +5,7 @@ from django.template import RequestContext
 #from rest_framework import viewsets
 from django.views.generic import TemplateView,ListView
 from django.views.generic.edit import FormView
-from appgimnasio.models import Servicio, Gimnasio, Cliente, HistorialIngresoCliente
+from appgimnasio.models import Servicio, Gimnasio, Cliente, HistorialIngresoCliente, Gasto, Ingreso
 from appgimnasio.forms import IngresoUsuario, LoginUsuario
 #from appgimnasio.serializers import GimnasioSerializers
 #import datetime
@@ -25,7 +25,7 @@ class IngresoCliente(FormView):
 	def form_valid(self, form):
 		try:
 			cliente = Cliente.objects.get(identificacion = form.cleaned_data['identificacion'])
-			historial = HistorialIngresoCliente(idCliente = cliente, fecha = timezone.now())
+			historial = HistorialIngresoCliente(idCliente = cliente)
 			historial.save()
 			return super(IngresoCliente, self).form_valid(form)
 		except Cliente.DoesNotExist:
@@ -49,6 +49,21 @@ class Login(FormView):
 		else:
 			return render_to_response('login_usuario.html',{"estado":"Error de Usuario o Contrasena","form":form},context_instance=RequestContext(self.request))
 		return super(Login, self).form_valid(form)
+
+def informe_ganancias(request):
+	fecha_reporte = timezone.now()
+	ingresos = Ingreso.objects.filter(fecha=fecha_reporte)
+	suma_ingresos = 0
+	for i in ingresos:
+		suma_ingresos  = suma_ingresos + i.monto
+
+	gastos = Gasto.objects.filter(fecha=fecha_reporte)
+	suma_gastos = 0
+	for g in gastos:
+		suma_gastos = suma_gastos + g.monto
+
+	total = suma_ingresos - suma_gastos
+	return render_to_response('reporte_ganancias.html',locals(),context_instance=RequestContext(request))
 
 def logout_view(request):
     logout(request)

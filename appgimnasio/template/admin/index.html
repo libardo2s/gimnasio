@@ -17,8 +17,9 @@
         <div class="app-{{ app.app_label }} module">
         <table>
         <caption>
-            <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}">{{ gimnasio }}</a>
+            <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}"><h3>{{ gimnasio }}</h3></a>
         </caption>
+        <a href="{% url 'reporte' %}"><strong>Reporte Ingresos Gastos del Día</strong></a>
         {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}">
             {% if model.admin_url %}

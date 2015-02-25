@@ -14,8 +14,8 @@ class Cliente(models.Model):
 		return	'%s %s' %(self.nombre,self.apellido)
 
 class HistorialIngresoCliente(models.Model):
-	idCliente = models.ForeignKey(Cliente)
-	fecha = models.DateTimeField('Fecha')
+	idCliente = models.ForeignKey(Cliente,verbose_name='Cliente')
+	fecha = models.DateTimeField('Fecha y Hora de Ingreso',auto_now=True)
 
 	def __unicode__(self):
 		return self.idCliente.nombre
