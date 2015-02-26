@@ -19,7 +19,13 @@
         <caption>
             <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}"><h3>{{ gimnasio }}</h3></a>
         </caption>
-        <a href="{% url 'reporte' %}"><strong>Reporte Ingresos Gastos del Día</strong></a>
+        {% if user.is_superuser %}
+            <tr>
+                <td>
+                    <a href="{% url 'reporte' %}"><strong>Reporte Ingresos Gastos del Día</strong></a>
+                </td>
+            </tr>
+        {% endif %}
         {% for model in app.models %}
             <tr class="model-{{ model.object_name|lower }}">
             {% if model.admin_url %}
