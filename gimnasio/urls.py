@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from appgimnasio.views import Index,IngresoCliente,Login,logout_view,informe_ganancias
+
 #from rest_framework import routers
 
 #router = routers.DefaultRouter()

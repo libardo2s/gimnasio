@@ -1,43 +1,54 @@
 {% extends 'admin/base_site.html'%}
 {%block title%}{{ title }} | Reporte de Ganancias{%endblock%}
 {%block content%}
-	<h3>Reporte de Ingresos y Gastos {{fecha_reporte|date}}</h3>
-	{% if ingresos and gastos %}
-		<div class="row">
-			<div class="col-md-4">
-				<p><strong>Ingresos</strong></p>
-				<p>Total Ingresos :{{suma_ingresos}} </p>
-				<table class="table table-condensed table-striped">
-					<tr>
-						<th>Concepto</th>
-						<th>Monto</th>
-					</tr>
-					{% for i in ingresos %}
+	<div class="container">
+		{% if ingresos or gastos %}		
+			<div class="row">
+				<h3 class="text-center">Reporte de Ingresos y Gastos</h3>
+				<h4 class="text-center">{{fecha_reporte|date}}</h4>
+				<div class="col-md-6">
+					<p class="text-center"><strong>Ingresos</strong></p>
+					<table class="table table-condensed table-striped">
 						<tr>
-							<td>{{i.concepto}}</td>
-							<td>{{i.monto}}</td>
+							<th>Concepto</th>
+							<th>Monto</th>
 						</tr>
-					{% endfor %}
-				</table>
-			</div>
+						{% for i in ingresos %}
+							<tr>
+								<td>{{i.concepto}}</td>
+								<td>{{i.monto}}</td>
+							</tr>
+						{% endfor %}
+							<tr>
+								<td>Total</td>
+								<td>{{suma_ingresos}}</td>
+							</tr>
+					</table>
+				</div>
 
-			<div class="col-md-4">
-				<p><strong>Gastos</strong></p>
-				<p>Total Gastos :{{suma_gastos}} </p>
-				<table class="table table-condensed table-striped">
-					<tr>
-						<th>Concepto</th>
-						<th>Monto</th>
-					</tr>
-					{% for g in gastos %}
+				<div class="col-md-6">
+					<p class="text-center"><strong>Gastos</strong></p>
+					<table class="table table-condensed table-striped">
 						<tr>
-							<td>{{g.concepto}}</td>
-							<td>{{g.monto}}</td>
+							<th>Concepto</th>
+							<th>Monto</th>
 						</tr>
-					{% endfor %}
-				</table>
+						{% for g in gastos %}
+							<tr>
+								<td>{{g.concepto}}</td>
+								<td>{{g.monto}}</td>
+							</tr>
+						{% endfor %}
+							<tr>
+								<td>Total</td>
+								<td>{{suma_gastos}}</td>
+							</tr>
+					</table>
+				</div>
 			</div>
-		</div>
-	{% endif %}
-	<p>Total : {{total}}</p>
+		{% else %}
+			<p><strong>No se han registrado Ingresos o Gastos</strong></p>
+		{% endif %}
+		
+	</div>
 {%endblock%}

@@ -3,10 +3,12 @@ from django.shortcuts import render, get_object_or_404, render_to_response, redi
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
 #from rest_framework import viewsets
-from django.views.generic import TemplateView,ListView
+from django.views.generic import TemplateView,ListView,DetailView
 from django.views.generic.edit import FormView
 from appgimnasio.models import Servicio, Gimnasio, Cliente, HistorialIngresoCliente, Gasto, Ingreso
 from appgimnasio.forms import IngresoUsuario, LoginUsuario
+from django.contrib.auth.decorators import login_required
+
 #from appgimnasio.serializers import GimnasioSerializers
 #import datetime
 from django.utils import timezone
@@ -50,6 +52,7 @@ class Login(FormView):
 			return render_to_response('login_usuario.html',{"estado":"Error de Usuario o Contrasena","form":form},context_instance=RequestContext(self.request))
 		return super(Login, self).form_valid(form)
 
+@login_required(login_url=reverse_lazy('login'))
 def informe_ganancias(request):
 	fecha_reporte = timezone.now()
 	ingresos = Ingreso.objects.filter(fecha=fecha_reporte)
@@ -62,13 +65,9 @@ def informe_ganancias(request):
 	for g in gastos:
 		suma_gastos = suma_gastos + g.monto
 
-	total = suma_ingresos - suma_gastos
+	#total = suma_ingresos - suma_gastos
 	return render_to_response('reporte_ganancias.html',locals(),context_instance=RequestContext(request))
 
 def logout_view(request):
     logout(request)
     return redirect(reverse_lazy('index'))
-
-"""class GimnasioViewSet(viewsets.ModelViewSet):
-	queryset = Gimnasio.objects.all()
-	serializer_class = GimnasioSerializers"""

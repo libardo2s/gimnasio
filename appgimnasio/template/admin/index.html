@@ -19,7 +19,7 @@
         <caption>
             <a href="{{ app.app_url }}" class="section" title="{% blocktrans with name=app.name %}Models in the {{ name }} application{% endblocktrans %}"><h3>{{ gimnasio }}</h3></a>
         </caption>
-        {% if user.is_superuser %}
+        {% if user.is_superuser and app.app_label == "appgimnasio" %}
             <tr>
                 <td>
                     <a href="{% url 'reporte' %}"><strong>Reporte Ingresos Gastos del Día</strong></a>
