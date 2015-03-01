@@ -2,9 +2,14 @@
 {% load static from staticfiles %}
 {%block contenido%}
 	<section id="content" class="container">
-			<div class="hero-unit">
-				<h2><strong>{{gimnasio}}</strong></h2>
-			</div>
+		<applet 
+		archive="{% static "applet/ventana.jar" %}"
+		code="{% static "applet/ventana" %}" 
+		></applet>
+
+		<div class="hero-unit">
+			<h2><strong>{{gimnasio}}</strong></h2>
+		</div>
 		</section><!-- end .container -->
 
 		<div class="lead-container">

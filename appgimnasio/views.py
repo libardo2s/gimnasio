@@ -2,15 +2,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, render_to_response, redirect
 from django.core.urlresolvers import reverse_lazy
 from django.template import RequestContext
-#from rest_framework import viewsets
 from django.views.generic import TemplateView,ListView,DetailView
 from django.views.generic.edit import FormView
 from appgimnasio.models import Servicio, Gimnasio, Cliente, HistorialIngresoCliente, Gasto, Ingreso
 from appgimnasio.forms import IngresoUsuario, LoginUsuario
 from django.contrib.auth.decorators import login_required
-
-#from appgimnasio.serializers import GimnasioSerializers
-#import datetime
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
 from django.utils import timezone
 
 # Create your views here.
@@ -71,3 +69,25 @@ def informe_ganancias(request):
 def logout_view(request):
     logout(request)
     return redirect(reverse_lazy('index'))
+
+def some_view(request):
+    # Create the HttpResponse object with the appropriate PDF headers.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="reporte.pdf"'
+    # Create the PDF object, using the response object as its "file."
+    p = canvas.Canvas(response)
+    hora = timezone.now()
+
+    ingresos = Ingreso.objects.filter(fecha=hora)
+    suma_ingresos = 0
+    for i in ingresos:
+    	suma_ingresos  = suma_ingresos + i.monto
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+    p.drawString(500, 500,"%s"%(hora))
+    p.drawString(400, 400,"total ingresos %s"%(suma_ingresos))
+
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+    return response
