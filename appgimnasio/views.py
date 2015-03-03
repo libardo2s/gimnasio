@@ -31,6 +31,10 @@ class IngresoCliente(FormView):
 		except Cliente.DoesNotExist:
 			return render_to_response('ingreso_clientes.html',{"estado":"No Registrado","form":form},context_instance=RequestContext(self.request))
 
+class IngresoClientesHuella(TemplateView):
+	template_name = "ingreso_usuario_huella.html"
+
+
 class Login(FormView):
 	template_name = "login_usuario.html"
 	form_class = LoginUsuario

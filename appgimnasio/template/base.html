@@ -39,7 +39,8 @@
 					<a class="brand" href="{% url 'index' %}">{{gimnasio}}</a>
 					<ul class="nav">
 						<li><a href="{% url 'index' %}" title="página principal">Principal</a></li>
-						<li><a href="{% url 'ingreso' %}" title="página de ingreso de clientes">Ingreso Clientes</a></li>						
+						<li><a href="{% url 'ingreso' %}" title="página de ingreso de clientes">Ingreso Clientes</a></li>
+						<li><a href="{% url 'ingreso_huella' %}" title="página de ingreso de clientes">Ingreso Clientes Huella</a></li>						
 						{% if user.is_authenticated %}
 							<li class="dropdown"><a href="#" data-toggle="dropdown" >{{user}} <span class="caret"></span></a>
 	          					<ul class="dropdown-menu" role="menu">
